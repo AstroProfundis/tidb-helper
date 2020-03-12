@@ -37,19 +37,19 @@ override_dh_auto_configure:
 override_dh_auto_build:
 	LDFLAGS=${_LDFLAGS} make build
 
-override_dh_auto_test:
-	# no binary tests
-
-override_dh_auto_clean:
-	rm -rf bin/
-
 override_dh_install:
 	dh_install bin/pd-server usr/bin/
 	dh_install bin/pd-ctl usr/bin/
 	dh_install bin/pd-tso-bench usr/bin/
 	dh_install bin/pd-recover usr/bin/
-	install -Dm755 debian/config etc/pd/pd.toml
-	install -Dm755 debian/service lib/systemd/system/pd.service
+	install -Dm644 debian/config etc/pd/pd.toml
+	install -Dm644 debian/service lib/systemd/system/pd.service
+
+override_dh_auto_test:
+	# no binary tests
+
+override_dh_auto_clean:
+	rm -rf bin/
 
 override_dh_golang:
 	# skip
