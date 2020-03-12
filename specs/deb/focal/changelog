@@ -1,0 +1,44 @@
+pd (3.0.11-1.focal~pingcap1) focal; urgency=medium
+
+  * Move to tidb-helper repo
+  * Cleanup specs
+
+ -- Allen Zhong <zhongbenli@pingcap.com>  Thu, 12 Mar 2020 11:47:08 +0800
+
+pd (3.0.11-0.focal~allenz6) focal; urgency=medium
+
+  * Remove GO111MODULE macro from Makefile
+  * Use GO111MODULE in packaging scripts, we don't have enough time for
+    packaging dependencies
+
+ -- Allen Zhong <moeallenz@gmail.com>  Thu, 12 Mar 2020 11:25:31 +0800
+
+pd (3.0.11-0.focal~allenz5) focal; urgency=medium
+
+  * Force disabling GO111MODULE
+
+ -- Allen Zhong <moeallenz@gmail.com>  Wed, 11 Mar 2020 17:57:01 +0800
+
+pd (3.0.11-0.focal~allenz4) focal; urgency=medium
+
+  * Disable GO111MODULE
+
+ -- Allen Zhong <moeallenz@gmail.com>  Wed, 11 Mar 2020 17:52:31 +0800
+
+pd (3.0.11-0.focal~allenz3) focal; urgency=medium
+
+  * Update packaging with dh-make-golang
+
+ -- Allen Zhong <moeallenz@gmail.com>  Wed, 11 Mar 2020 17:31:59 +0800
+
+pd (3.0.11-0.focal~allenz2) focal; urgency=medium
+
+  * Update build configs
+
+ -- Allen Zhong <moeallenz@gmail.com>  Thu, 11 Mar 2020 17:02:22 +0800
+
+pd (3.0.11-0.focal~allenz1) focal; urgency=medium
+
+  * Initial release: bootstrap the package
+
+ -- Allen Zhong <moeallenz@gmail.com>  Thu, 11 Mar 2020 15:46:03 +0800

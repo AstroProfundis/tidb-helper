@@ -1,0 +1,51 @@
+Source: pd
+Maintainer: PingCAP EE Team <ee@pingcap.com>
+Uploaders: Allen Zhong <zhongbenli@pingcap.com>
+Section: net
+Testsuite: autopkgtest-pkg-go
+Priority: optional
+Build-Depends: dh-golang,
+               golang-any,
+# Go libs
+# Depends are not complete in Ubuntu's repo, not using them for now
+#               golang-github-chzyer-readline-dev,
+#               golang-github-coreos-pkg-dev,
+#               golang-github-docker-go-units-dev,
+#               golang-github-ghodss-yaml-dev,
+#               golang-github-google-btree-dev,
+#               golang-github-gorilla-mux-dev,
+#               golang-github-grpc-ecosystem-go-grpc-prometheus-dev,
+#               golang-github-grpc-ecosystem-grpc-gateway-dev,
+#               golang-github-juju-ratelimit-dev,
+#               golang-github-mattn-go-shellwords-dev,
+#               golang-github-montanaflynn-stats-dev,
+#               golang-github-opentracing-opentracing-go-dev,
+#               golang-github-pingcap-check-dev,
+#               golang-github-pkg-errors-dev,
+#               golang-github-spf13-cobra-dev,
+#               golang-github-spf13-pflag-dev,
+#               golang-github-urfave-negroni-dev,
+#               golang-github-syndtr-goleveldb-dev,
+#               golang-go-semver-dev,
+#               golang-go.uber-zap-dev,
+#               golang-gogoprotobuf-dev,
+#               golang-google-grpc-dev,
+#               golang-gopkg-natefinch-lumberjack.v2-dev,
+#               golang-goprotobuf-dev,
+#               golang-logrus-dev,
+#               golang-prometheus-client-dev,
+#               golang-toml-dev
+Standards-Version: 4.5.0
+Homepage: https://github.com/pingcap/pd
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/pingcap/pd
+
+Package: pd
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Built-Using: ${misc:Built-Using}
+Description: Placement driver for TiKV (program)
+ PD is the abbreviation for Placement Driver. It is used to manage and
+ schedule the TiKV cluster.
+

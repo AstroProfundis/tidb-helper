@@ -1,0 +1,55 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+include /usr/share/dpkg/pkg-info.mk
+
+DEBIAN_DIR = $(CURDIR)/debian
+TMP        = $(DEBIAN_DIR)/$(PACKAGE)
+SOURCE     = $(TMP)/../
+PKG        = github.com/pingcap/pd
+
+# the version string is checked against
+# ^v\d+.\d+.\d+(-[a-z0-9]+)*(\+\d+-g[0-9a-f]+)?(-dirty)?$
+# which $(DEB_VERSION doesn't necessarily match (eg, ~beta, +dfsg))
+# but it is probably appropriate to include something here so it is clear
+# that this isn't upstream's build
+# x.y.z+dfsg -> vx.y.z-dfsg
+export ST_DEB_VERSION := v$(shell echo $(DEB_VERSION_UPSTREAM_REVISION) | tr A-Z a-z | tr +~ -)
+
+export _LDFLAGS="-X ${PKG}/v3/server.PDReleaseVersion=${ST_DEB_VERSION} -X ${PKG}/v3/server.PDGitBranch=${DEB_DISTRIBUTION} -X ${PKG}/v3/server.PDGitHash=v${DEB_VERSION_EPOCH_UPSTREAM}"
+
+#export DH_GOLANG_EXCLUDES := plugin/scheduler_example
+
+export GOCACHE := $(SOURCE)/go-build
+export GO111MODULE := on
+#export GOPROXY := off
+
+%:
+	dh $@ --builddirectory=_build --buildsystem=golang --with=golang,systemd
+
+override_dh_auto_configure:
+	sed -i '/shell git /d' Makefile
+	sed -i '/GO111MODULE/d' Makefile
+	dh_auto_configure
+
+override_dh_auto_build:
+	LDFLAGS=${_LDFLAGS} make build
+
+override_dh_auto_test:
+	# no binary tests
+
+override_dh_auto_clean:
+	rm -rf bin/
+
+override_dh_install:
+	dh_install bin/pd-server usr/bin/
+	dh_install bin/pd-ctl usr/bin/
+	dh_install bin/pd-tso-bench usr/bin/
+	dh_install bin/pd-recover usr/bin/
+	install -Dm755 debian/config etc/pd/pd.toml
+	install -Dm755 debian/service lib/systemd/system/pd.service
+
+override_dh_golang:
+	# skip
