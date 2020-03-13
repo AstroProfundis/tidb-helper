@@ -1,0 +1,23 @@
+Source: tikv
+Section: net
+Priority: optional
+Maintainer: PingCAP EE Team <ee@pingcap.com>
+Uploaders:
+ Allen Zhong <zhongbenli@pingcap.com>
+Build-Depends: curl,
+               cmake,
+               golang-any,
+Standards-Version: 4.4.1
+Homepage: https://github.com/tikv/tikv
+
+Package: tikv
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         pd (>= 3.0)
+Description: TiKV is an open-source, distributed, and transactional key-value database.
+ Unlike other traditional NoSQL systems, TiKV not only provides classical
+ key-value APIs, but also transactional APIs with ACID compliance. Built
+ in Rust and powered by Raft, TiKV was originally created to complement TiDB,
+ a distributed HTAP database compatible with the MySQL protocol.
+

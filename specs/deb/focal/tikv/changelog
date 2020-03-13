@@ -1,0 +1,11 @@
+tikv (3.0.11-0.focal~pingcap1) focal; urgency=medium
+
+  * Move to tidb-helper repo
+
+ -- Allen Zhong <zhongbenli@pingcap.com>  Thu, 12 Mar 2020 18:12:21 +0800
+
+tikv (3.0.11-0.focal~allenz1) focal; urgency=medium
+
+  * Initial release
+
+ -- Allen Zhong <moeallenz@gmail.com>  Thu, 12 Mar 2020 13:33:18 +0800

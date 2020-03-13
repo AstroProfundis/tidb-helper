@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+include /usr/share/dpkg/pkg-info.mk
+
+export TIKV_BUILD_GIT_HASH=${DEB_VERSION_EPOCH_UPSTREAM}
+export TIKV_BUILD_GIT_BRANCH=${DEB_DISTRIBUTION}
+export PATH := ${HOME}/.cargo/bin:${PATH}
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	# the code doesn't compile with stable rust, so we use rustup for a workaround
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
+	echo ${PATH}
+	${HOME}/.cargo/bin/rustup component add rustfmt-preview
+	
+	sed -i '/TIKV_BUILD_GIT_/d' Makefile
+	#dh_auto_configure
+
+override_dh_auto_build:
+	make build_release
+
+override_dh_auto_install:
+	dh_install target/release/tikv-server usr/bin/
+	dh_install target/release/tikv-ctl usr/bin/
+	dh_install target/release/tikv-importer usr/bin/
+	install -Dm644 debian/config etc/tikv/tikv.toml
+	install -Dm644 debian/service lib/systemd/system/tikv.service
+
+override_dh_auto_test:
+	# no binary tests
+
+override_dh_auto_clean:
+	# cargo may be unavailable before rustup
+	make clean || echo "";
