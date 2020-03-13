@@ -1,0 +1,58 @@
+Source: tidb
+Maintainer: Allen Zhong <moeallenz@gmail.com>
+Uploaders:
+ Allen Zhong <moeallenz@gmail.com>
+Section: net
+Testsuite: autopkgtest-pkg-go
+Priority: optional
+Build-Depends: dh-golang,
+               golang-any,
+# Go libs
+# Depends are not complete in Ubuntu's repo, not using them for now
+#               golang-github-cznic-mathutil-dev,
+#               golang-github-cznic-sortutil-dev,
+#               golang-github-dgryski-go-farm-dev,
+#               golang-github-go-sql-driver-mysql-dev,
+#               golang-github-google-btree-dev,
+#               golang-github-google-pprof-dev,
+#               golang-github-google-uuid-dev,
+#               golang-github-gorilla-mux-dev,
+#               golang-github-klauspost-cpuid-dev,
+#               golang-github-ngaut-pools-dev,
+#               golang-github-ngaut-sync2-dev,
+#               golang-github-opentracing-opentracing-go-dev,
+#               golang-github-pingcap-check-dev,
+#               golang-github-prometheus-client-model-dev,
+#               golang-github-shirou-gopsutil-dev,
+#               golang-github-spaolacci-murmur3-dev,
+#               golang-github-uber-go-atomic-dev,
+#               golang-go.uber-atomic-dev,
+#               golang-go.uber-zap-dev,
+#               golang-gogoprotobuf-dev,
+#               golang-golang-x-net-dev,
+#               golang-golang-x-tools-dev,
+#               golang-google-grpc-dev,
+#               golang-gopkg-natefinch-lumberjack.v2-dev,
+#               golang-goprotobuf-dev,
+#               golang-logrus-dev,
+#               golang-prometheus-client-dev,
+#               golang-snappy-go-dev,
+#               golang-toml-dev,
+#               golang-x-text-dev
+Standards-Version: 4.5.0
+Homepage: https://github.com/pingcap/tidb
+Rules-Requires-Root: no
+XS-Go-Import-Path: github.com/pingcap/tidb
+
+Package: tidb
+Architecture: any
+Depends: tikv (>= 3.0),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Built-Using: ${misc:Built-Using}
+Description: TiDB is an open source distributed HTAP database compatible with the MySQL protocol (program)
+ TiDB expands both SQL processing and storage by simply adding new
+ nodes. This makes infrastructure capacity planning both easier and more
+ cost-effective than traditional relational databases which only scale
+ vertically.
+

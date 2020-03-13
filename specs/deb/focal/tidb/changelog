@@ -1,0 +1,5 @@
+tidb (3.0.11-0.focal~allenz1) focal; urgency=medium
+
+  * Initial release (With dh-make-golang)
+
+ -- Allen Zhong <moeallenz@gmail.com>  Thu, 12 Mar 2020 12:15:51 +0800

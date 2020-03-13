@@ -1,0 +1,10 @@
+.debhelper/
+tidb/
+
+*.log
+
+debhelper-build-stamp
+files
+*.debhelper
+*.substvars
+
